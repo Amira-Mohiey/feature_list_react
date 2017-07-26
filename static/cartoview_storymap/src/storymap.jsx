@@ -11,49 +11,49 @@ import CollapsibleMenuItem from './components/CollapsibleMenuItem.jsx';
 import '../css/map-viewer.css';
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-      fetch(this.props.layerUrl)
-  .then(function(response) {
-    if (response.status >= 400) {
-      throw new Error("Bad response from server");
-    }
-    return response.json();
-  })
-  .then((data)=> {
-  var layer=data.objects
- this.setState({layers:layer})
- 
-  });
-    
+	constructor(props) {
+		super(props);
+		fetch(this.props.layerUrl)
+			.then(function(response) {
+				if (response.status >= 400) {
+					throw new Error("Bad response from server");
+				}
+				return response.json();
+			})
+			.then((data) => {
+				var layer = data.objects
+				this.setState({ layers: layer })
 
-  } 
-  state = {
-    ready: false,
-    sideComponent: 'list'
-  }
-  showFeatureList = () => {
-    this.setState({
-      sideComponent: 'list'
-    })
-  }
-  showFeatureDetails = (fid, imageUrl) => {
-    console.log(fid);
-    console.log(imageUrl);
-    this.setState({
-      sideComponent: 'details',
-      fid,
-      imageUrl
-    })
-  }
-  render = () => {
-    const {ready, map, fid, imageUrl, sideComponent} = this.state;
-    const {title, listItemTpl} = this.props;
-        console.log(this.state)
+			});
 
 
-    return (
-      <div className="app-ct row h-100">
+	}
+	state = {
+		ready: false,
+		sideComponent: 'list'
+	}
+	showFeatureList = () => {
+		this.setState({
+			sideComponent: 'list'
+		})
+	}
+	showFeatureDetails = (fid, imageUrl) => {
+		console.log(fid);
+		console.log(imageUrl);
+		this.setState({
+			sideComponent: 'details',
+			fid,
+			imageUrl
+		})
+	}
+	render = () => {
+		const { ready, map, fid, imageUrl, sideComponent } = this.state;
+		const { title, listItemTpl } = this.props;
+		console.log(this.state)
+
+
+		return (
+			<div className="app-ct row h-100">
         <div className="col-md-4 h-100">
           <nav className="navbar navbar-toggleable navbar-inverse  bg-primary side-panel-header">
             <ul className="navbar-nav">
@@ -80,8 +80,7 @@ class App extends React.Component {
             }
           </nav>
          {this.state.layers && <FeatureList
-            className={sideComponent == 'list' ? "h-100" : 'hidden-xs-up' }
-            map={this.state.map}
+            map={map}
             onFeatureSelected={this.showFeatureDetails}
             layers={this.state.layers}
              />}
@@ -98,14 +97,14 @@ class App extends React.Component {
         </div>
       </div>
 
-    );
-  }
+		);
+	}
 
 }
 
 global.MapViewer = {
-  show: (elId, config) => {
-    var viewer = React.createElement(App, config);
-    ReactDOM.render(viewer, document.getElementById(elId));
-  }
+	show: (elId, config) => {
+		var viewer = React.createElement(App, config);
+		ReactDOM.render(viewer, document.getElementById(elId));
+	}
 };

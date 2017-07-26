@@ -44,6 +44,7 @@
     "react-draggable": "^2.1.1",
     "react-markdown": "^2.4.6",
     "react-modal": "^1.6.5",
+    "react-paginate": "^4.4.3",
     "react-tap-event-plugin": "^1.0.0",
     "reactstrap": "^4.6.2",
     "tcomb-form": "^0.9.17",

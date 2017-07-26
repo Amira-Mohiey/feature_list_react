@@ -10,7 +10,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" >
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/4.1.1/ol.css">
+<style>
+#react-paginate ul {
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
+#react-paginate li {
+    display: inline-block;
+}
+
+#react-paginate .break a {
+    cursor: default;}
+
+
+}
+
+.ol-unselectable{
+  width:100% !important;
+
+
+}
+</style>
 <body>
   <div id="viewer-ct"></div>
   <script type="text/javascript">
@@ -63,7 +85,7 @@
     config.title = {{ instance.title | dump_json }};
     config.abstract = {{ instance.abstract | dump_json }};
     config.layerUrl =  "{% url 'cartoview_map_layers' %}?id={{instance.map.id}}";
-  
+
     {% verbatim %}
     config.listItemTpl = "{{name}}, {{city}}";
     {% endverbatim %}

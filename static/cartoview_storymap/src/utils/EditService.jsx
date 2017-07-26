@@ -29,8 +29,8 @@ export default class EditService {
     console.log(instanceConfig);
     console.log(getCRSFToken());
     const url = id
-      ? this.baseUrl + "apps/cartoview_map_viewer_client/"+id+"/edit"
-      : this.baseUrl + "apps/cartoview_map_viewer_client/new"
+      ? this.baseUrl + "apps/cartoview_storymap/"+id+"/edit"
+      : this.baseUrl + "apps/cartoview_storymap/new"
     return fetch(hasTrailingSlash(url) ? url : url+"/" , {
       method: 'POST',
       // credentials: "include",

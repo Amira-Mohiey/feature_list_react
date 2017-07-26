@@ -7,49 +7,56 @@ import MapConfigService from 'boundless-sdk/services/MapConfigService';
 import ol from 'openlayers';
 
 class MapViewer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.loaded = false;
-    this.map = new ol.Map({
-      //controls: [new ol.control.Attribution({collapsible: false}), new ol.control.ScaleLine()],
-      layers: [new ol.layer.Tile({title: 'OpenStreetMap', source: new ol.source.OSM()})],
-      view: new ol.View({
-        center: [
-          0, 0
-        ],
-        zoom: 3
-      })
-    });
-  }
-  update(mapId) {
-    if (mapId) {
-      var url = getMapConfigUrl(mapId);
-      fetch(url, {
-        method: "GET",
-        credentials: 'include'
-      }).then((response) => {
-        if (response.status == 200) {
-          return response.json();
-        }
-      }).then((config) => {
-        if (config) {
-          MapConfigService.load(MapConfigTransformService.transform(config), this.map);
-          this.props.onMapReady(this.map)
-        }
-      });
-    }
-  }
+	constructor(props) {
+		super(props);
+		this.loaded = false;
+		this.map = new ol.Map({
+			//controls: [new ol.control.Attribution({collapsible: false}), new ol.control.ScaleLine()],
+			layers: [new ol.layer.Tile({
+				title: 'OpenStreetMap',
+				source: new ol.source
+					.OSM()
+			})],
+			view: new ol.View({
+				center: [
+					0, 0
+				],
+				zoom: 3
+			})
+		});
+	}
+	update(mapId) {
+		if (mapId) {
+			var url = getMapConfigUrl(mapId);
+			fetch(url, {
+				method: "GET",
+				credentials: 'include'
+			}).then((response) => {
+				if (response.status == 200) {
+					return response.json();
+				}
+			}).then((config) => {
+				if (config) {
+					MapConfigService.load(MapConfigTransformService.transform(config),
+						this.map);
+					this.props.onMapReady(this.map)
+				}
+			});
+		}
+	}
 
-  componentDidMount() {
-    this.map.setTarget(ReactDOM.findDOMNode(this.refs.map));
-    this.update(this.props.mapId);
-  }
-  render() {
-    var {className=''} = this.props;
-    return (<div ref="map" className={className + ' map-ct'}>
+	componentDidMount() {
+		this.map.setTarget(ReactDOM.findDOMNode(this.refs.map));
+		this.update(this.props.mapId);
+	}
+	render() {
+		var { className = '' } = this.props;
+		return (
+			<div style={{width:'100%'}} ref="map" className={className + ' map-ct'}>
       {this.props.children}
-    </div>);
-  }
+    </div>
+		);
+	}
 }
 
 export default MapViewer;

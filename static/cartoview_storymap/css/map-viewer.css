@@ -72,6 +72,7 @@ html, body {
   float: left;
   margin: 2px 4px;
 }
+
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
 
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
