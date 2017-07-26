@@ -29834,7 +29834,7 @@ var FeatureList = function (_Component) {
 			className: 'form-control',
 			onChange: this.layerChange
 		}, void 0, listItems, _jsx('option', {}, void 0, 'dummy')), _jsx('div', {}, void 0, _jsx('div', {
-			style: { overflowY: 'scroll', maxHeight: '800px' }
+			style: { maxHeight: '800px' }
 		}, void 0, this.items(features))));
 	};
 
@@ -56023,9 +56023,10 @@ var App = function (_React$Component) {
 			console.log(_this.state);
 
 			return _jsx('div', {
-				className: 'app-ct row h-100'
+				className: 'app-ct row',
+				style: { height: '100%' }
 			}, void 0, _jsx('div', {
-				className: 'col-md-4 h-100'
+				className: 'col-md-4'
 			}, void 0, _jsx('nav', {
 				className: 'navbar navbar-toggleable navbar-inverse  bg-primary side-panel-header'
 			}, void 0, _jsx('ul', {
@@ -56057,17 +56058,11 @@ var App = function (_React$Component) {
 				map: map,
 				onFeatureSelected: _this.showFeatureDetails,
 				layers: _this.state.layers
-			}), sideComponent == 'details' && _jsx(_FeatureDetails2.default, {
-				className: 'h-100',
-				map: map,
-				fid: fid,
-				imageUrl: imageUrl,
-				layer: layer
 			})), _jsx('div', {
-				className: 'col  h-100'
+				className: 'col'
 			}, void 0, _react2.default.createElement(_MapViewer2.default, _extends({}, _this.props, { onMapReady: function onMapReady(map) {
 					return _this.setState({ ready: true, map: map });
-				}, className: 'h-100' }))));
+				} }))));
 		};
 
 		fetch(_this.props.layerUrl).then(function (response) {

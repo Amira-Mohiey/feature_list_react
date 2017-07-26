@@ -53,8 +53,8 @@ class App extends React.Component {
 
 
 		return (
-			<div className="app-ct row h-100">
-        <div className="col-md-4 h-100">
+			<div className="app-ct row" style={{height:'100%'}}>
+        <div className="col-md-4">
           <nav className="navbar navbar-toggleable navbar-inverse  bg-primary side-panel-header">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -84,15 +84,9 @@ class App extends React.Component {
             onFeatureSelected={this.showFeatureDetails}
             layers={this.state.layers}
              />}
-
-          {
-            sideComponent == 'details' &&
-              <FeatureDetails className="h-100" map={map} fid={fid} imageUrl={imageUrl} layer={layer}/>
-          }
-
         </div>
-        <div className="col  h-100">
-          <MapViewer {...this.props} onMapReady={(map) => this.setState({ready:true, map})} className="h-100">
+        <div className="col">
+          <MapViewer {...this.props} onMapReady={(map) => this.setState({ready:true, map})}>
           </MapViewer>
         </div>
       </div>

@@ -162,7 +162,7 @@ class FeatureList extends Component {
     <option>dummy</option>
   </select>
       <div>
-        <div  style={{overflowY:'scroll',maxHeight: '800px'}} >
+        <div  style={{maxHeight: '800px'}} >
           {this.items(features)}
         </div>
 
