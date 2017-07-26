@@ -31,7 +31,9 @@ class FeatureList extends Component {
 		this.layerChange = this.layerChange.bind(this);
 		this.handlePageClick = this.handlePageClick.bind(this);
 	}
-	state = {}
+	state = {
+    perPage:10
+  }
 	componentDidMount() {
 		const { layers, map } = this.props;
 		console.log(this.props)
@@ -53,30 +55,29 @@ class FeatureList extends Component {
 				return response.json();
 			})
 			.then((data) => {
-				// console.log(data)
+				console.log(data.totalFeatures)
 				var features = new ol.format.GeoJSON().readFeatures(data)
         console.log(features[0].getProperties());
+        console.log(Math.ceil(data.totalFeatures/this.state.perPage))
 
-				//var feature=new ol.format.GeoJSON().readFeatures(data);
-				this.setState({ features: features })
+				this.setState({ allfeatures:features,pageCount:Math.ceil(data.totalFeatures/this.state.perPage )})
+        var sliced = this.state.allfeatures.slice(1, this.state.perPage+1)
+        this.setState({ features:sliced})
 			});
 	}
-	handlePageClick() {
-		console.log("amira");
+	handlePageClick(data) {
+		console.log(data.selected);
+    console.log(this.state.features)
+    console.log("cond",this.state.perPage*data.selected, this.state.perPage*data.selected+1);
+    var sliced = this.state.allfeatures.slice(this.state.perPage*data.selected, this.state.perPage*(data.selected+1))
+    this.setState({ features:sliced})
+
 	}
 	_handleFeatureClick (event,feature) {
     event.preventDefault();
     console.log(feature.getGeometry().getExtent());
     this.props.map.getView().fit(feature.getGeometry().getExtent(), this.props.map.getSize());
-  //   this.props.map.getLayers().forEach(function(layer, i) {
-  //      console.log(layer.get('name'));
-  //      if (layer.get('name')!=="background"){
-  //      console.log(layer.getSource());
-  //  }
-   //
-  //   });
-   //
-  //   console.log(this.props.layers[0].typename);
+
   console.log(feature);
 
 	}
@@ -113,7 +114,7 @@ class FeatureList extends Component {
                                   nextLabel={"next"}
                                   breakLabel={<a href="">...</a>}
                                   breakClassName={"break-me"}
-                                  pageCount={20}
+                                  pageCount={this.state.pageCount}
                                   marginPagesDisplayed={2}
                                   pageRangeDisplayed={5}
                                   pageClassName={"page-item"}

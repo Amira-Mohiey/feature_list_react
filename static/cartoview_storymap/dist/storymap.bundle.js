@@ -29705,7 +29705,9 @@ var FeatureList = function (_Component) {
 
 		var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
-		_this.state = {};
+		_this.state = {
+			perPage: 10
+		};
 
 		_this.layerChange = _this.layerChange.bind(_this);
 		_this.handlePageClick = _this.handlePageClick.bind(_this);
@@ -29736,32 +29738,30 @@ var FeatureList = function (_Component) {
 			}
 			return response.json();
 		}).then(function (data) {
-			// console.log(data)
+			console.log(data.totalFeatures);
 			var features = new _openlayers2.default.format.GeoJSON().readFeatures(data);
 			console.log(features[0].getProperties());
+			console.log(Math.ceil(data.totalFeatures / _this2.state.perPage));
 
-			//var feature=new ol.format.GeoJSON().readFeatures(data);
-			_this2.setState({ features: features });
+			_this2.setState({ allfeatures: features, pageCount: Math.ceil(data.totalFeatures / _this2.state.perPage) });
+			var sliced = _this2.state.allfeatures.slice(1, _this2.state.perPage + 1);
+			_this2.setState({ features: sliced });
 		});
 	};
 
-	FeatureList.prototype.handlePageClick = function handlePageClick() {
-		console.log("amira");
+	FeatureList.prototype.handlePageClick = function handlePageClick(data) {
+		console.log(data.selected);
+		console.log(this.state.features);
+		console.log("cond", this.state.perPage * data.selected, this.state.perPage * data.selected + 1);
+		var sliced = this.state.allfeatures.slice(this.state.perPage * data.selected, this.state.perPage * (data.selected + 1));
+		this.setState({ features: sliced });
 	};
 
 	FeatureList.prototype._handleFeatureClick = function _handleFeatureClick(event, feature) {
 		event.preventDefault();
 		console.log(feature.getGeometry().getExtent());
 		this.props.map.getView().fit(feature.getGeometry().getExtent(), this.props.map.getSize());
-		//   this.props.map.getLayers().forEach(function(layer, i) {
-		//      console.log(layer.get('name'));
-		//      if (layer.get('name')!=="background"){
-		//      console.log(layer.getSource());
-		//  }
-		//
-		//   });
-		//
-		//   console.log(this.props.layers[0].typename);
+
 		console.log(feature);
 	};
 
@@ -29801,7 +29801,7 @@ var FeatureList = function (_Component) {
 				href: ''
 			}, void 0, '...'),
 			breakClassName: "break-me",
-			pageCount: 20,
+			pageCount: this.state.pageCount,
 			marginPagesDisplayed: 2,
 			pageRangeDisplayed: 5,
 			pageClassName: "page-item",
