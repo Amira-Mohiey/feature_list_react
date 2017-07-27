@@ -162,7 +162,7 @@ class FeatureList extends Component {
     <option>dummy</option>
   </select>
       <div>
-        <div  style={{maxHeight: '800px'}} >
+        <div  style={{}} >
           {this.items(features)}
         </div>
 

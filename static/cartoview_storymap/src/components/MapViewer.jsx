@@ -52,7 +52,7 @@ class MapViewer extends React.Component {
 	render() {
 		var { className = '' } = this.props;
 		return (
-			<div style={{width:'100%'}} ref="map" className={className + ' map-ct'}>
+			<div ref="map" className={className + ' map-ct'} style={{height: '100%'}}>
       {this.props.children}
     </div>
 		);

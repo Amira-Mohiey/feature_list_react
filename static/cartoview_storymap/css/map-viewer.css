@@ -30,6 +30,7 @@ html, body {
 }
 .app-ct > div{
   padding: 0;
+  height: auto !important;
 }
 .feature-list-ct .list-group-item:first-child,
 .feature-list-ct .list-group-item:last-child
@@ -38,7 +39,7 @@ html, body {
 }
 .feature-list-ct{
   overflow: auto;
-  padding-bottom: 80px;
+  padding-bottom:0;
 }
 
 .modal.fade .nav-side-menu.modal-dialog {

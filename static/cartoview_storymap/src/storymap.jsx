@@ -53,8 +53,8 @@ class App extends React.Component {
 
 
 		return (
-			<div className="app-ct row" style={{height:'100%'}}>
-        <div className="col-md-4">
+			<div className="app-ct row" style={{height: '100%'}}>
+        <div className="col-md-4" style={{height: '100%'}}>
           <nav className="navbar navbar-toggleable navbar-inverse  bg-primary side-panel-header">
             <ul className="navbar-nav">
               <li className="nav-item">
@@ -85,7 +85,7 @@ class App extends React.Component {
             layers={this.state.layers}
              />}
         </div>
-        <div className="col">
+        <div className="col-md-8"style={{height: '100%'}}>
           <MapViewer {...this.props} onMapReady={(map) => this.setState({ready:true, map})}>
           </MapViewer>
         </div>

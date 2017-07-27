@@ -29834,7 +29834,7 @@ var FeatureList = function (_Component) {
 			className: 'form-control',
 			onChange: this.layerChange
 		}, void 0, listItems, _jsx('option', {}, void 0, 'dummy')), _jsx('div', {}, void 0, _jsx('div', {
-			style: { maxHeight: '800px' }
+			style: {}
 		}, void 0, this.items(features))));
 	};
 
@@ -30269,7 +30269,7 @@ var MapViewer = function (_React$Component) {
 
 		return _react2.default.createElement(
 			'div',
-			{ style: { width: '100%' }, ref: 'map', className: className + ' map-ct' },
+			{ ref: 'map', className: className + ' map-ct', style: { height: '100%' } },
 			this.props.children
 		);
 	};
@@ -31829,7 +31829,7 @@ exports = module.exports = __webpack_require__(437)();
 
 
 // module
-exports.push([module.i, "\nhtml, body {\n    height: 100%;\n    overflow: hidden;\n}\n.ol-zoom {\n    top: .5em;\n    left: initial;\n    right: .5em;\n}\n\n.nav-side-menu.modal-dialog{\n  margin: 0;\n  height: 100%;\n  max-width: 420px;\n}\n\n.nav-side-menu .modal-content{\n  border-radius: 0;\n  min-height: 100%;\n  border: none;\n}\n.side-panel-header .nav-link{\n  font-size: 30px;\n  padding: .0 .4rem;\n}\n.close-btn-ct{\n  display: flex!important;\n  width: 100%;\n}\n.app-ct > div{\n  padding: 0;\n}\n.feature-list-ct .list-group-item:first-child,\n.feature-list-ct .list-group-item:last-child\n{\n  border-radius: 0;\n}\n.feature-list-ct{\n  overflow: auto;\n  padding-bottom: 80px;\n}\n\n.modal.fade .nav-side-menu.modal-dialog {\n  -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n}\n\n.sliding-menu-toggle{\n  position: absolute;\n  top:10px;\n  left: 10px;\n  z-index: 1;\n  font-size: 24px;\n  padding: 5px 10px;\n}\n\n\n.loading{\n  border-radius: 100%;\n  border: 3px solid rgba(0, 0, 0, .1);\n  border-top-color: rgba(0, 0, 0, .45);\n  box-sizing: border-box;\n  height: 30px;\n  width: 30px;\n  -webkit-animation:spin .7s linear infinite;\n  animation:spin 2s linear infinite;\n}\n.btn .loading{\n  height: 16px;\n  width: 16px;\n  float: left;\n  margin: 2px 4px;\n}\n\n@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }\n\n@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }\n", ""]);
+exports.push([module.i, "\nhtml, body {\n    height: 100%;\n    overflow: hidden;\n}\n.ol-zoom {\n    top: .5em;\n    left: initial;\n    right: .5em;\n}\n\n.nav-side-menu.modal-dialog{\n  margin: 0;\n  height: 100%;\n  max-width: 420px;\n}\n\n.nav-side-menu .modal-content{\n  border-radius: 0;\n  min-height: 100%;\n  border: none;\n}\n.side-panel-header .nav-link{\n  font-size: 30px;\n  padding: .0 .4rem;\n}\n.close-btn-ct{\n  display: flex!important;\n  width: 100%;\n}\n.app-ct > div{\n  padding: 0;\n  height: auto !important;\n}\n.feature-list-ct .list-group-item:first-child,\n.feature-list-ct .list-group-item:last-child\n{\n  border-radius: 0;\n}\n.feature-list-ct{\n  overflow: auto;\n  padding-bottom:0;\n}\n\n.modal.fade .nav-side-menu.modal-dialog {\n  -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n}\n\n.sliding-menu-toggle{\n  position: absolute;\n  top:10px;\n  left: 10px;\n  z-index: 1;\n  font-size: 24px;\n  padding: 5px 10px;\n}\n\n\n.loading{\n  border-radius: 100%;\n  border: 3px solid rgba(0, 0, 0, .1);\n  border-top-color: rgba(0, 0, 0, .45);\n  box-sizing: border-box;\n  height: 30px;\n  width: 30px;\n  -webkit-animation:spin .7s linear infinite;\n  animation:spin 2s linear infinite;\n}\n.btn .loading{\n  height: 16px;\n  width: 16px;\n  float: left;\n  margin: 2px 4px;\n}\n\n@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }\n\n@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }\n", ""]);
 
 // exports
 
@@ -56026,7 +56026,8 @@ var App = function (_React$Component) {
 				className: 'app-ct row',
 				style: { height: '100%' }
 			}, void 0, _jsx('div', {
-				className: 'col-md-4'
+				className: 'col-md-4',
+				style: { height: '100%' }
 			}, void 0, _jsx('nav', {
 				className: 'navbar navbar-toggleable navbar-inverse  bg-primary side-panel-header'
 			}, void 0, _jsx('ul', {
@@ -56059,7 +56060,8 @@ var App = function (_React$Component) {
 				onFeatureSelected: _this.showFeatureDetails,
 				layers: _this.state.layers
 			})), _jsx('div', {
-				className: 'col'
+				className: 'col-md-8',
+				style: { height: '100%' }
 			}, void 0, _react2.default.createElement(_MapViewer2.default, _extends({}, _this.props, { onMapReady: function onMapReady(map) {
 					return _this.setState({ ready: true, map: map });
 				} }))));
